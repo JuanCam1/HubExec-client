@@ -1,8 +1,8 @@
-import { StrictMode } from "react";
 import ReactDOM from "react-dom/client";
 import { RouterProvider, createRouter } from "@tanstack/react-router";
 import { routeTree } from "./routeTree.gen";
 import "./index.css";
+import { ThemeProvider } from "./context/ThemeContext";
 
 const router = createRouter({
   routeTree,
@@ -23,8 +23,8 @@ const rootElement = document.getElementById("app");
 if (rootElement && !rootElement.innerHTML) {
   const root = ReactDOM.createRoot(rootElement);
   root.render(
-    <StrictMode>
+    <ThemeProvider defaultTheme="system" storageKey="hubexec-theme">
       <RouterProvider router={router} />
-    </StrictMode>,
+    </ThemeProvider>,
   );
 }
