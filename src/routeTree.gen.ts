@@ -12,6 +12,9 @@
 
 import { Route as rootRoute } from './routes/__root'
 import { Route as IndexImport } from './routes/index'
+import { Route as HomeIndexImport } from './routes/home/index'
+import { Route as HomeSettingImport } from './routes/home/setting'
+import { Route as HomeProfileImport } from './routes/home/profile'
 import { Route as authRegisterImport } from './routes/(auth)/register'
 import { Route as authLoginImport } from './routes/(auth)/login'
 
@@ -20,6 +23,24 @@ import { Route as authLoginImport } from './routes/(auth)/login'
 const IndexRoute = IndexImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const HomeIndexRoute = HomeIndexImport.update({
+  id: '/home/',
+  path: '/home/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const HomeSettingRoute = HomeSettingImport.update({
+  id: '/home/setting',
+  path: '/home/setting',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const HomeProfileRoute = HomeProfileImport.update({
+  id: '/home/profile',
+  path: '/home/profile',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -60,6 +81,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof authRegisterImport
       parentRoute: typeof rootRoute
     }
+    '/home/profile': {
+      id: '/home/profile'
+      path: '/home/profile'
+      fullPath: '/home/profile'
+      preLoaderRoute: typeof HomeProfileImport
+      parentRoute: typeof rootRoute
+    }
+    '/home/setting': {
+      id: '/home/setting'
+      path: '/home/setting'
+      fullPath: '/home/setting'
+      preLoaderRoute: typeof HomeSettingImport
+      parentRoute: typeof rootRoute
+    }
+    '/home/': {
+      id: '/home/'
+      path: '/home'
+      fullPath: '/home'
+      preLoaderRoute: typeof HomeIndexImport
+      parentRoute: typeof rootRoute
+    }
   }
 }
 
@@ -69,12 +111,18 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/login': typeof authLoginRoute
   '/register': typeof authRegisterRoute
+  '/home/profile': typeof HomeProfileRoute
+  '/home/setting': typeof HomeSettingRoute
+  '/home': typeof HomeIndexRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/login': typeof authLoginRoute
   '/register': typeof authRegisterRoute
+  '/home/profile': typeof HomeProfileRoute
+  '/home/setting': typeof HomeSettingRoute
+  '/home': typeof HomeIndexRoute
 }
 
 export interface FileRoutesById {
@@ -82,14 +130,30 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/(auth)/login': typeof authLoginRoute
   '/(auth)/register': typeof authRegisterRoute
+  '/home/profile': typeof HomeProfileRoute
+  '/home/setting': typeof HomeSettingRoute
+  '/home/': typeof HomeIndexRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/login' | '/register'
+  fullPaths:
+    | '/'
+    | '/login'
+    | '/register'
+    | '/home/profile'
+    | '/home/setting'
+    | '/home'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/login' | '/register'
-  id: '__root__' | '/' | '/(auth)/login' | '/(auth)/register'
+  to: '/' | '/login' | '/register' | '/home/profile' | '/home/setting' | '/home'
+  id:
+    | '__root__'
+    | '/'
+    | '/(auth)/login'
+    | '/(auth)/register'
+    | '/home/profile'
+    | '/home/setting'
+    | '/home/'
   fileRoutesById: FileRoutesById
 }
 
@@ -97,12 +161,18 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   authLoginRoute: typeof authLoginRoute
   authRegisterRoute: typeof authRegisterRoute
+  HomeProfileRoute: typeof HomeProfileRoute
+  HomeSettingRoute: typeof HomeSettingRoute
+  HomeIndexRoute: typeof HomeIndexRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   authLoginRoute: authLoginRoute,
   authRegisterRoute: authRegisterRoute,
+  HomeProfileRoute: HomeProfileRoute,
+  HomeSettingRoute: HomeSettingRoute,
+  HomeIndexRoute: HomeIndexRoute,
 }
 
 export const routeTree = rootRoute
@@ -117,7 +187,10 @@ export const routeTree = rootRoute
       "children": [
         "/",
         "/(auth)/login",
-        "/(auth)/register"
+        "/(auth)/register",
+        "/home/profile",
+        "/home/setting",
+        "/home/"
       ]
     },
     "/": {
@@ -128,6 +201,15 @@ export const routeTree = rootRoute
     },
     "/(auth)/register": {
       "filePath": "(auth)/register.tsx"
+    },
+    "/home/profile": {
+      "filePath": "home/profile.tsx"
+    },
+    "/home/setting": {
+      "filePath": "home/setting.tsx"
+    },
+    "/home/": {
+      "filePath": "home/index.tsx"
     }
   }
 }

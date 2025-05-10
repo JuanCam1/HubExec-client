@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @import "tw-animate-css";
+@import "tailwindcss-animated";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -138,4 +139,16 @@ code {
   body {
     @apply bg-background text-foreground;
   }
+}
+
+.color-text {
+  @apply text-emerald-500
+}
+
+.color-btn {
+  @apply bg-emerald-500 hover:bg-emerald-600 dark:bg-emerald-600 dark:hover:bg-emerald-700 text-zinc-800 dark:hover:text-zinc-900;
+}
+
+.animate-border {
+  @apply relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-white after:transition-all after:duration-300 hover:after:w-full hover:text-white pb-1 px-1;
 }
