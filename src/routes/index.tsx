@@ -1,6 +1,7 @@
+import TypographyH1 from "@/components/shared/h1";
 import { Button } from "@/components/ui/button";
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
-import { ArrowRight, LayoutGrid } from "lucide-react";
+import { ArrowRight, Code, LayoutGrid } from "lucide-react";
 
 export const Route = createFileRoute("/")({
   component: App,
@@ -9,7 +10,11 @@ export const Route = createFileRoute("/")({
 function App() {
   const navigate = useNavigate();
   return (
-    <div className="animate-fade-up animate-duration-[800ms] animate-ease-in lg:w-[1200px] flex flex-col justify-center items-center gap-4">
+    <div className="animate-fade-up animate-duration-[800ms] animate-ease-in lg:w-[1000px] flex flex-col justify-center items-center gap-4">
+      <div className="color-text flex items-center gap-2">
+        <Code className="size-8" />
+        <TypographyH1 text="HubExec" />
+      </div>
       <h1 className="text-3xl font-bold leading-tight tracking-tighter md:text-5xl lg:text-6xl lg:leading-[1.1] color-bg">
         Encuentra y comparte aplicaciones
       </h1>
