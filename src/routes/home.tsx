@@ -12,7 +12,7 @@ function HomeComponent() {
   return (
     <SidebarProvider>
       <AppSidebar side="left" />
-      <section className="w-full overflow-y-hidden">
+      <section className="w-full">
         <Navbar />
         {/* <div className="pt-8 w-full h-full"> */}
         <Outlet />

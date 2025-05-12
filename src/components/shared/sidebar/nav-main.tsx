@@ -1,4 +1,4 @@
-import { useNavigate, useLocation, Link } from "@tanstack/react-router";
+import { useLocation, Link } from "@tanstack/react-router";
 
 import {
   SidebarGroup,
