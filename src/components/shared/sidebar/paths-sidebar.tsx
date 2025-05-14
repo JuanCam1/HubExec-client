@@ -1,10 +1,10 @@
-import { Users, LayoutDashboard, Upload } from "lucide-react";
+import { Users, LayoutDashboard, Upload, Download } from "lucide-react";
 
 export const pathsSidebar = [
   {
     title: "Publicaciones",
     icon: LayoutDashboard,
-    url: "/home/posts",
+    url: "/home/post",
   },
   {
     title: "Perfil",
@@ -15,6 +15,11 @@ export const pathsSidebar = [
   {
     title: "Upload",
     icon: Upload,
-    url: "/home/profile",
+    url: "/home/upload",
+  },
+  {
+    title: "Download",
+    icon: Download,
+    url: "/home/download",
   },
 ];

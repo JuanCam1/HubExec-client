@@ -13,11 +13,14 @@
 import { Route as rootRoute } from './routes/__root'
 import { Route as HomeImport } from './routes/home'
 import { Route as IndexImport } from './routes/index'
+import { Route as HomeUploadImport } from './routes/home/upload'
 import { Route as HomeSettingImport } from './routes/home/setting'
 import { Route as HomeProfileImport } from './routes/home/profile'
-import { Route as HomePostsImport } from './routes/home/posts'
+import { Route as HomeDownloadImport } from './routes/home/download'
 import { Route as authRegisterImport } from './routes/(auth)/register'
 import { Route as authLoginImport } from './routes/(auth)/login'
+import { Route as HomePostIndexImport } from './routes/home/post/index'
+import { Route as HomePostPostIdImport } from './routes/home/post/$postId'
 
 // Create/Update Routes
 
@@ -33,6 +36,12 @@ const IndexRoute = IndexImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
+const HomeUploadRoute = HomeUploadImport.update({
+  id: '/upload',
+  path: '/upload',
+  getParentRoute: () => HomeRoute,
+} as any)
+
 const HomeSettingRoute = HomeSettingImport.update({
   id: '/setting',
   path: '/setting',
@@ -45,9 +54,9 @@ const HomeProfileRoute = HomeProfileImport.update({
   getParentRoute: () => HomeRoute,
 } as any)
 
-const HomePostsRoute = HomePostsImport.update({
-  id: '/posts',
-  path: '/posts',
+const HomeDownloadRoute = HomeDownloadImport.update({
+  id: '/download',
+  path: '/download',
   getParentRoute: () => HomeRoute,
 } as any)
 
@@ -61,6 +70,18 @@ const authLoginRoute = authLoginImport.update({
   id: '/(auth)/login',
   path: '/login',
   getParentRoute: () => rootRoute,
+} as any)
+
+const HomePostIndexRoute = HomePostIndexImport.update({
+  id: '/post/',
+  path: '/post/',
+  getParentRoute: () => HomeRoute,
+} as any)
+
+const HomePostPostIdRoute = HomePostPostIdImport.update({
+  id: '/post/$postId',
+  path: '/post/$postId',
+  getParentRoute: () => HomeRoute,
 } as any)
 
 // Populate the FileRoutesByPath interface
@@ -95,11 +116,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof authRegisterImport
       parentRoute: typeof rootRoute
     }
-    '/home/posts': {
-      id: '/home/posts'
-      path: '/posts'
-      fullPath: '/home/posts'
-      preLoaderRoute: typeof HomePostsImport
+    '/home/download': {
+      id: '/home/download'
+      path: '/download'
+      fullPath: '/home/download'
+      preLoaderRoute: typeof HomeDownloadImport
       parentRoute: typeof HomeImport
     }
     '/home/profile': {
@@ -116,21 +137,48 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof HomeSettingImport
       parentRoute: typeof HomeImport
     }
+    '/home/upload': {
+      id: '/home/upload'
+      path: '/upload'
+      fullPath: '/home/upload'
+      preLoaderRoute: typeof HomeUploadImport
+      parentRoute: typeof HomeImport
+    }
+    '/home/post/$postId': {
+      id: '/home/post/$postId'
+      path: '/post/$postId'
+      fullPath: '/home/post/$postId'
+      preLoaderRoute: typeof HomePostPostIdImport
+      parentRoute: typeof HomeImport
+    }
+    '/home/post/': {
+      id: '/home/post/'
+      path: '/post'
+      fullPath: '/home/post'
+      preLoaderRoute: typeof HomePostIndexImport
+      parentRoute: typeof HomeImport
+    }
   }
 }
 
 // Create and export the route tree
 
 interface HomeRouteChildren {
-  HomePostsRoute: typeof HomePostsRoute
+  HomeDownloadRoute: typeof HomeDownloadRoute
   HomeProfileRoute: typeof HomeProfileRoute
   HomeSettingRoute: typeof HomeSettingRoute
+  HomeUploadRoute: typeof HomeUploadRoute
+  HomePostPostIdRoute: typeof HomePostPostIdRoute
+  HomePostIndexRoute: typeof HomePostIndexRoute
 }
 
 const HomeRouteChildren: HomeRouteChildren = {
-  HomePostsRoute: HomePostsRoute,
+  HomeDownloadRoute: HomeDownloadRoute,
   HomeProfileRoute: HomeProfileRoute,
   HomeSettingRoute: HomeSettingRoute,
+  HomeUploadRoute: HomeUploadRoute,
+  HomePostPostIdRoute: HomePostPostIdRoute,
+  HomePostIndexRoute: HomePostIndexRoute,
 }
 
 const HomeRouteWithChildren = HomeRoute._addFileChildren(HomeRouteChildren)
@@ -140,9 +188,12 @@ export interface FileRoutesByFullPath {
   '/home': typeof HomeRouteWithChildren
   '/login': typeof authLoginRoute
   '/register': typeof authRegisterRoute
-  '/home/posts': typeof HomePostsRoute
+  '/home/download': typeof HomeDownloadRoute
   '/home/profile': typeof HomeProfileRoute
   '/home/setting': typeof HomeSettingRoute
+  '/home/upload': typeof HomeUploadRoute
+  '/home/post/$postId': typeof HomePostPostIdRoute
+  '/home/post': typeof HomePostIndexRoute
 }
 
 export interface FileRoutesByTo {
@@ -150,9 +201,12 @@ export interface FileRoutesByTo {
   '/home': typeof HomeRouteWithChildren
   '/login': typeof authLoginRoute
   '/register': typeof authRegisterRoute
-  '/home/posts': typeof HomePostsRoute
+  '/home/download': typeof HomeDownloadRoute
   '/home/profile': typeof HomeProfileRoute
   '/home/setting': typeof HomeSettingRoute
+  '/home/upload': typeof HomeUploadRoute
+  '/home/post/$postId': typeof HomePostPostIdRoute
+  '/home/post': typeof HomePostIndexRoute
 }
 
 export interface FileRoutesById {
@@ -161,9 +215,12 @@ export interface FileRoutesById {
   '/home': typeof HomeRouteWithChildren
   '/(auth)/login': typeof authLoginRoute
   '/(auth)/register': typeof authRegisterRoute
-  '/home/posts': typeof HomePostsRoute
+  '/home/download': typeof HomeDownloadRoute
   '/home/profile': typeof HomeProfileRoute
   '/home/setting': typeof HomeSettingRoute
+  '/home/upload': typeof HomeUploadRoute
+  '/home/post/$postId': typeof HomePostPostIdRoute
+  '/home/post/': typeof HomePostIndexRoute
 }
 
 export interface FileRouteTypes {
@@ -173,27 +230,36 @@ export interface FileRouteTypes {
     | '/home'
     | '/login'
     | '/register'
-    | '/home/posts'
+    | '/home/download'
     | '/home/profile'
     | '/home/setting'
+    | '/home/upload'
+    | '/home/post/$postId'
+    | '/home/post'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/home'
     | '/login'
     | '/register'
-    | '/home/posts'
+    | '/home/download'
     | '/home/profile'
     | '/home/setting'
+    | '/home/upload'
+    | '/home/post/$postId'
+    | '/home/post'
   id:
     | '__root__'
     | '/'
     | '/home'
     | '/(auth)/login'
     | '/(auth)/register'
-    | '/home/posts'
+    | '/home/download'
     | '/home/profile'
     | '/home/setting'
+    | '/home/upload'
+    | '/home/post/$postId'
+    | '/home/post/'
   fileRoutesById: FileRoutesById
 }
 
@@ -233,9 +299,12 @@ export const routeTree = rootRoute
     "/home": {
       "filePath": "home.tsx",
       "children": [
-        "/home/posts",
+        "/home/download",
         "/home/profile",
-        "/home/setting"
+        "/home/setting",
+        "/home/upload",
+        "/home/post/$postId",
+        "/home/post/"
       ]
     },
     "/(auth)/login": {
@@ -244,8 +313,8 @@ export const routeTree = rootRoute
     "/(auth)/register": {
       "filePath": "(auth)/register.tsx"
     },
-    "/home/posts": {
-      "filePath": "home/posts.tsx",
+    "/home/download": {
+      "filePath": "home/download.tsx",
       "parent": "/home"
     },
     "/home/profile": {
@@ -254,6 +323,18 @@ export const routeTree = rootRoute
     },
     "/home/setting": {
       "filePath": "home/setting.tsx",
+      "parent": "/home"
+    },
+    "/home/upload": {
+      "filePath": "home/upload.tsx",
+      "parent": "/home"
+    },
+    "/home/post/$postId": {
+      "filePath": "home/post/$postId.tsx",
+      "parent": "/home"
+    },
+    "/home/post/": {
+      "filePath": "home/post/index.tsx",
       "parent": "/home"
     }
   }

@@ -16,9 +16,7 @@ const CardComponent = () => {
       <CardHeader className="px-0">
         <div className="flex justify-between items-start w-full">
           <CardTitle className="text-base font-semibold">App Ejemplo</CardTitle>
-          <Badge variant="default">
-            {value % 2 === 0 ? "Windows" : "macOS"}
-          </Badge>
+          <Badge variant="default">{value % 2 === 0 ? "SO" : "Mobile"}</Badge>
         </div>
       </CardHeader>
       <CardContent className="p-0">

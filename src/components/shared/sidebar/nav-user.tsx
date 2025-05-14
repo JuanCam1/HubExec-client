@@ -49,7 +49,7 @@ const NavUser = () => {
             align="end"
             sideOffset={4}
           >
-            <DropdownMenuGroup>
+            {/* <DropdownMenuGroup>
               <Link to="/">
                 <DropdownMenuItem className="gap-2 hover:bg-zinc-300 dark:hover:bg-zinc-900 cursor-pointer">
                   <BadgeCheck className="size-4" />
@@ -64,7 +64,7 @@ const NavUser = () => {
                   Opciones
                 </DropdownMenuItem>
               </Link>
-            </DropdownMenuGroup>
+            </DropdownMenuGroup> */}
             <button className="w-full" type="button" onClick={logout}>
               <DropdownMenuItem className="gap-2 hover:bg-zinc-300 dark:hover:bg-zinc-900 cursor-pointer">
                 <LogOut className="size-4" />

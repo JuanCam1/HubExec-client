@@ -62,7 +62,7 @@ const TableThCell = ({ className, children }: TableCellProps) => {
 const TableBody = ({ children }: TableProps) => <tbody>{children}</tbody>;
 
 const TableRow = ({ children }: TableRowProps) => (
-  <tr className="hover:bg-bg-zinc-400 dark:hover:bg-zinc-700 dark:even:bg-zinc-900 even:bg-[#f2f2f2] border border-gray-300">
+  <tr className="hover:bg-neutral-200 dark:hover:bg-zinc-900 dark:even:bg-zinc-900/50 even:bg-zinc-200/20 border-[0.5px] dark:border-zinc-700">
     {children}
   </tr>
 );

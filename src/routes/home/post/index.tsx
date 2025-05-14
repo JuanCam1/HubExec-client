@@ -1,12 +1,13 @@
 import Cards from "@/components/shared/cards";
 import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { categories } from "@/data/categories-data";
 import { createFileRoute } from "@tanstack/react-router";
 import { Search } from "lucide-react";
 
-export const Route = createFileRoute("/home/posts")({
+export const Route = createFileRoute("/home/post/")({
   component: RouteComponent,
 });
 
@@ -14,7 +15,7 @@ function RouteComponent() {
   // const
   console.log(categories);
   return (
-    <div className="w-full px-4 flex flex-col justify-center items-center gap-4 mt-6">
+    <div className="w-full px-6 flex flex-col justify-center items-center gap-4 mt-6">
       <div className="relative flex gap-2 w-full ">
         <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
         <Input
@@ -40,25 +41,13 @@ function RouteComponent() {
         <TabsContent value="Todos">
           <Cards />
         </TabsContent>
-        <TabsContent value="Windows">
+        <TabsContent value="SO">
           <Cards />
         </TabsContent>
-        <TabsContent value="MacOS">
+        <TabsContent value="Mobile">
           <Cards />
         </TabsContent>
-        <TabsContent value="Linux">
-          <Cards />
-        </TabsContent>
-        <TabsContent value="IOS">
-          <Cards />
-        </TabsContent>
-        <TabsContent value="Android">
-          <Cards />
-        </TabsContent>
-        <TabsContent value="Github">
-          <Cards />
-        </TabsContent>
-        <TabsContent value="Otros">
+        <TabsContent value="Desktop">
           <Cards />
         </TabsContent>
       </Tabs>

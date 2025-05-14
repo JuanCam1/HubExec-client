@@ -29,7 +29,7 @@ function LoginComponent() {
       <button
         onClick={() => {
           navigate({
-            to: "/home",
+            to: "/home/post",
           });
         }}
       >
