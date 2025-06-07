@@ -1,15 +1,8 @@
-import {
-  BadgeCheck,
-  ChevronsUpDown,
-  LogOut,
-  Sparkles,
-  Settings,
-} from "lucide-react";
+import { ChevronsUpDown, LogOut, Settings } from "lucide-react";
 
 import {
   DropdownMenu,
   DropdownMenuContent,
-  DropdownMenuGroup,
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
@@ -19,7 +12,6 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from "@/components/ui/sidebar";
-import { Link } from "@tanstack/react-router";
 import { useNavigate } from "@tanstack/react-router";
 
 const NavUser = () => {

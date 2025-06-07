@@ -31,7 +31,7 @@ function RouteComponent() {
         defaultValue="Todos"
         className="w-full flex flex-col justify-center items-end mt-4"
       >
-        <TabsList className="mb-4 flex justify-center max-lg:w-full">
+        <TabsList className="mb-4 flex justify-center max-md:w-full">
           {categories.map((c) => (
             <TabsTrigger key={c.id} value={c.name} className="cursor-pointer">
               {c.name}

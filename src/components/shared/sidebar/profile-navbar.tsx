@@ -7,7 +7,6 @@ import {
 } from "@/components/ui/sidebar";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import TypographyH3 from "../h3";
-//@ts-ignore
 import logoProfile from "@/assets/images/profile.jpeg";
 
 const ProfileNavbar = () => {
@@ -16,7 +15,7 @@ const ProfileNavbar = () => {
 
   const goAccount = () => {
     navigate({
-      to: "/",
+      to: "/home/profile",
     });
   };
 
